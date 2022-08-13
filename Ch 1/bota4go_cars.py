@@ -13,7 +13,7 @@ class Car:
 # TODO: create instances of the class
 b1 = Car("BMW", 1986, "red")
 b2 = Car("Audi", 2007, "blue")
-b3 = Car("Mercedes", 2006, "grey")
+b3 = Car("Mercedes", 2006, "light-grey")
 # print("class ", b1)
 
 print(b1.brand, b1.year, b1.color)
