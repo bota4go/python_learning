@@ -53,31 +53,47 @@ class Notebook:
 
 
 # TODO: create instances of the class
-b1 = Car("BMW", 1986, "red", 10000)
-b2 = Car("Audi", 2007, "blue", 25000)
-b3 = Car("Mercedes", 2006, "light-grey", 5000)
+
+c = [Car]
+c[0] = Car("BMW", 1986, "red", 10000)
+c.append(Car)
+c[1] = Car("Audi", 2007, "blue", 25000)
+c.append(Car)
+c[2] = Car("Mercedes", 2006, "light-grey", 5000)
+
+# b1 = Car("BMW", 1986, "red", 10000)
+# b2 = Car("Audi", 2007, "blue", 25000)
+# b3 = Car("Mercedes", 2006, "light-grey", 5000)
 
 # TODO: print the class and property
-b1.onscreen()
-b2.onscreen()
-b3.onscreen()
+# b1.onscreen()
+# b2.onscreen()
+# b3.onscreen()
 
-b1.setnewprice(0.5, 2022)
+#print("Lenght", len(c))
+
+for x in c:
+    x.onscreen
+
+
+
+c[0].setnewprice(0.5, 2022)
 message = colored ('Set new price','blue', attrs=['blink', 'reverse'])
 print (message)
-b1.onscreen()
+c[0].onscreen()
 
-print ("print secret", b1._Car__PriceYear)
+print ("print secret", c[0]._Car__PriceYear)
 
 a1 = Notebook("Fujitsu", 2015, 1000)
 a2 = Notebook("MAC", 2022, 3500)
 
-print(type(b1))
+print(type(c[0]))
+print(type(c))
 print(type(a1))
 
-print((type(a1)) == type(b1))
+print((type(a1)) == type(c[0]))
 print(isinstance(a1,Car))
-print(isinstance(b1,Car))
+print(isinstance(c[0],Car))
 
 
 
