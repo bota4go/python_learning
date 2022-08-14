@@ -4,17 +4,41 @@
 from datetime import date
 import sys
 from tkinter.tix import NoteBook
+from turtle import clear
 from termcolor import colored, cprint
+import os
+from time import sleep
 
 # TODO: create a basic class
 class Car:
-    def __init__(self, brand, year, color, price):
+    CAR_TYPES = ("Collection", "Regular")
+
+    __carlist = None
+
+    #access to method without definition an instance? 
+    @classmethod
+    def getcartypes(cls):
+        return cls.CAR_TYPES
+
+    #access to method without definition an instance? 
+    #doesnot midify?
+    @staticmethod
+    def getcarlist():
+        if Car.__carlist == None:
+            Car.__carlist = []
+        return Car.__carlist    
+
+    def __init__(self, car_type, brand, year, color, price):
             self.brand = brand
             self.year = year
             self.__PriceYear = 2020
             self.color = color
             self.price = price
-    
+            if (not car_type in Car.CAR_TYPES):
+                raise ValueError (f"bota4go, {car_type}  is not a valid car type")
+            else:
+                 self.car_type =car_type
+
     #calculate age        
     def age(self):
         return date.today().year-self.year
@@ -32,6 +56,7 @@ class Car:
         self._CorrectionPercent = CorrectionPercent
         self._CorrectionYear = CorrectionYear
 
+    # print on screen
     def onscreen(self):
         message = colored('{} it is a brand', 'magenta')
         print(message.format(self.brand), end=' ')
@@ -41,7 +66,7 @@ class Car:
         print(message.format(self.age()), end=' ')
         message = colored('and {} it is its color', 'red')
         print(message.format(self.color))
-        return 0
+        return 'done'
 
 
 class Notebook:
@@ -53,47 +78,53 @@ class Notebook:
 
 
 # TODO: create instances of the class
+os.system('cls')
 
 c = [Car]
-c[0] = Car("BMW", 1986, "red", 10000)
+c[0] = Car("Collection", "BMW", 1986, "red", 10000)
 c.append(Car)
-c[1] = Car("Audi", 2007, "blue", 25000)
+c[1] = Car("Collection","Audi", 2007, "blue", 25000)
 c.append(Car)
-c[2] = Car("Mercedes", 2006, "light-grey", 5000)
-
-# b1 = Car("BMW", 1986, "red", 10000)
-# b2 = Car("Audi", 2007, "blue", 25000)
-# b3 = Car("Mercedes", 2006, "light-grey", 5000)
+c[2] = Car("Regular","Mercedes", 2006, "light-grey", 5000)
 
 # TODO: print the class and property
-# b1.onscreen()
-# b2.onscreen()
-# b3.onscreen()
 
-#print("Lenght", len(c))
+print("Numbers of data", len(c))
 
 for x in c:
-    x.onscreen
+    reply=x.onscreen()
+    print(reply)
+    
 
-
+#processes the data
 
 c[0].setnewprice(0.5, 2022)
 message = colored ('Set new price','blue', attrs=['blink', 'reverse'])
 print (message)
 c[0].onscreen()
 
-print ("print secret", c[0]._Car__PriceYear)
+# print ("print secret", c[0]._Car__PriceYear)
 
 a1 = Notebook("Fujitsu", 2015, 1000)
 a2 = Notebook("MAC", 2022, 3500)
 
-print(type(c[0]))
-print(type(c))
-print(type(a1))
+print ("Car types: ", Car.getcartypes())
 
-print((type(a1)) == type(c[0]))
-print(isinstance(a1,Car))
-print(isinstance(c[0],Car))
+thecarlist = Car.getcarlist()
+thecarlist.append(c[0])
+thecarlist.append(c[1])
+print(thecarlist)
+
+# print(type(c[0]))
+# print(type(c))
+# print(type(a1))
+# print((type(a1)) == type(c[0]))
+# print(isinstance(a1,Car))
+# print(isinstance(c[0],Car))
+# print("os name is :", os.name)
+# sleep(2)
+# os.system('cls')
+
 
 
 
